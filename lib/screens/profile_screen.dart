@@ -1,134 +1,4 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
-// import 'package:instagram_clone/uttils/colors.dart';
-// import 'package:instagram_clone/uttils/utils.dart';
-// import 'package:instagram_clone/widgets/follow_Btn.dart';
-//
-// class Profile_Screen extends StatefulWidget {
-//   final String Uuid;
-//   const Profile_Screen({Key? key, required this.Uuid}) : super(key: key);
-//
-//   @override
-//   State<Profile_Screen> createState() => _Profile_ScreenState();
-// }
-//
-// class _Profile_ScreenState extends State<Profile_Screen> {
-//   var userData={};
-//
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     getData();
-//   }
-//   getData() async{
-//     try{
-//       var snap=await FirebaseFirestore.instance.collection('users').doc(widget.Uuid).get();
-//       userData=snap.data()!;
-//       setState(() {});
-//     }catch(err){
-//       showSnackBar(err.toString(), context);
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: mobileBackgroundColor,
-//         title: Text(userData['username']),
-//         centerTitle: false,
-//       ),
-//       body: ListView(
-//         children: [
-//           Padding(
-//             padding: const EdgeInsets.all(16),
-//             child: Column(
-//               children: [
-//                 Row(
-//                   children: [
-//                     CircleAvatar(
-//                       backgroundColor: Colors.grey,
-//                       backgroundImage: AssetImage("assets/images/account.jpg"),
-//                       radius: 40,
-//                     ),
-//                     Expanded(
-//                       flex: 1,
-//                       child: Column(
-//                         children: [
-//                           Row(
-//                             mainAxisSize: MainAxisSize.max,
-//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                             children: [
-//                               buildState(20, "Posts"),
-//                               buildState(200, "Followers"),
-//                               buildState(20, "Following"),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                             children: [
-//                               FollowBtn(
-//                                 borderColor: Colors.grey,
-//                                 backgroundColor: mobileBackgroundColor,
-//                                 textColor: primaryColor,
-//                                 txt: "Edit Profile",
-//                                 function: () {},
-//                               )
-//                             ],
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 Container(
-//                   alignment: Alignment.centerLeft,
-//                   padding: EdgeInsets.only(top: 15),
-//                   child: Text(
-//                     "User name",
-//                     style: TextStyle(fontWeight: FontWeight.bold),
-//                   ),
-//                 ),
-//                 Container(
-//                   alignment: Alignment.centerLeft,
-//                   padding: EdgeInsets.only(top: 15),
-//                   child: Text(
-//                     "Description or Bio",
-//                   ),
-//                 ),
-//
-//               ],
-//             ),
-//           ),
-//            Divider(),
-//
-//         ],
-//       ),
-//     );
-//   }
-//
-//   Column buildState(int num, String lable) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         Text(
-//           num.toString(),
-//           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//         ),
-//         Container(
-//           margin: EdgeInsets.only(top: 4),
-//           child: Text(
-//             lable,
-//             style: TextStyle(
-//                 fontSize: 15, fontWeight: FontWeight.w400, color: Colors.grey),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -199,7 +69,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? Center(
+        ? const Center(
             child: CircularProgressIndicator(),
           )
         : Scaffold(
@@ -249,7 +119,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                             txt: "Sign Out",
                                             function: () async{
                                               await AuthMathods().signOut();
-                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LogIn_Screen()));
+                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const LogIn_Screen()));
                                             },
                                           )
                                         : isFollowing
@@ -296,15 +166,15 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(top: 15),
                         child: Text(
                           userData['username'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(top: 15),
                         child: Text(
                           userData['bio'],
                         ),
@@ -312,7 +182,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                     ],
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 FutureBuilder(
                   future: FirebaseFirestore.instance
                       .collection('posts')
@@ -340,11 +210,9 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                       itemBuilder: (context, index) {
                         DocumentSnapshot snap =
                             (snapshot.data! as dynamic).docs[index];
-                        return Container(
-                          child: Image(
-                            image: NetworkImage(snap['postUrl']),
-                            fit: BoxFit.cover,
-                          ),
+                        return Image(
+                          image: NetworkImage(snap['postUrl']),
+                          fit: BoxFit.cover,
                         );
                       },
                     );
@@ -362,13 +230,13 @@ class _Profile_ScreenState extends State<Profile_Screen> {
       children: [
         Text(
           num.toString(),
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         Container(
-          margin: EdgeInsets.only(top: 4),
+          margin: const EdgeInsets.only(top: 4),
           child: Text(
             lable,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 15, fontWeight: FontWeight.w400, color: Colors.grey),
           ),
         ),

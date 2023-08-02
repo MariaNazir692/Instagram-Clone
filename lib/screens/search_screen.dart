@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/screens/profile_screen.dart';
 import 'package:instagram_clone/screens/search_result.dart';
 import 'package:instagram_clone/uttils/colors.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import '../uttils/global_variables.dart';
 
 class Search_Screen extends StatefulWidget {
@@ -32,7 +30,7 @@ class _Search_ScreenState extends State<Search_Screen> {
         backgroundColor: mobileBackgroundColor,
         title: TextFormField(
           controller: _searchController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: "Search for user",
           ),
           onFieldSubmitted: (String _) {
@@ -46,7 +44,7 @@ class _Search_ScreenState extends State<Search_Screen> {
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SearchResult_For_post (searchStr: _searchController.text)));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
             ),
           )
@@ -54,39 +52,6 @@ class _Search_ScreenState extends State<Search_Screen> {
       ),
       //we are getting data of users of our app from firebase that's why we are using future builder
       body:
-          //   ? FutureBuilder(
-          // future: FirebaseFirestore.instance
-          //     .collection('users')
-          //     .where('username',
-          //     isGreaterThanOrEqualTo: _searchController.text)
-          //     .get(),
-          // builder: (context,
-          //     AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          //   if (!snapshot.hasData) {
-          //     return Center(child: const CircularProgressIndicator());
-          //   }
-          //   return ListView.builder(
-          //       itemCount: snapshot.data!.docs.length,
-          //       itemBuilder: (context, index) {
-          //         return InkWell(
-          //           onTap: () {
-          //             Navigator.of(context).push(MaterialPageRoute(
-          //                 builder: (context) =>
-          //                     Profile_Screen(
-          //                       uid: snapshot.data!.docs[index]['uid'],
-          //                     )));
-          //           },
-          //           child: ListTile(
-          //             leading: CircleAvatar(
-          //               backgroundImage: NetworkImage(
-          //                 snapshot.data!.docs[index]['photoUrl'],
-          //               ),
-          //             ),
-          //             title: Text(snapshot.data!.docs[index]['username']),
-          //           ),
-          //         );
-          //       });
-          // },)
       FutureBuilder(
               future: FirebaseFirestore.instance.collection('posts').get(),
               builder: (context, snapshot) {

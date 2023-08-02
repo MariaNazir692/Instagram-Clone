@@ -1,9 +1,7 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/resources/auth_method.dart';
-
 import '../responsive/mobileScreen_layout.dart';
 import '../responsive/responsive_layout_screen.dart';
 import '../responsive/webScreen_layout.dart';
@@ -32,6 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     emailController.dispose();
     passwordController.dispose();
     usernameController.dispose();
@@ -89,8 +88,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 horizontal: MediaQuery
                     .of(context)
                     .size
-                    .width / 3):EdgeInsets.symmetric(horizontal: 32),
-            margin: EdgeInsets.only(top: 50),
+                    .width / 3):const EdgeInsets.symmetric(horizontal: 32),
+            margin: const EdgeInsets.only(top: 50),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   color: primaryColor,
                   height: 64,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Stack(
@@ -108,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     image != null
                         ? CircleAvatar(
                             radius: 64, backgroundImage: MemoryImage(image!))
-                        : CircleAvatar(
+                        : const CircleAvatar(
                             radius: 64,
                             backgroundImage:
                                 AssetImage("assets/images/ccount.png")),
@@ -117,11 +116,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         left: 80,
                         child: IconButton(
                           onPressed: selectImage,
-                          icon: Icon(Icons.add_a_photo),
+                          icon: const Icon(Icons.add_a_photo),
                         ))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -129,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: "Enter Name",
                   textInputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -137,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: "Enter Email",
                   textInputType: TextInputType.emailAddress,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -146,7 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textInputType: TextInputType.text,
                   isPass: true,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -154,11 +153,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: "Enter Bio",
                   textInputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
                   onPressed: SignUpUser,
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: primaryColor,
+                    fixedSize: const Size(200, 50),
+                    shape: const StadiumBorder(),
+                  ),
                   child: _isloading
                       ? const Center(
                           child: CircularProgressIndicator(
@@ -167,22 +171,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         )
                       : Text(
                           "Sign Up".toUpperCase(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: primaryColor,
-                    fixedSize: Size(200, 50),
-                    shape: StadiumBorder(),
-                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Already have an Account: ",
                       style: TextStyle(color: Colors.white54, fontSize: 15),
                     ),
@@ -190,10 +189,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return LogIn_Screen();
+                          return const LogIn_Screen();
                         }));
                       },
-                      child: Text(
+                      child: const Text(
                         "SignIn",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,

@@ -36,8 +36,8 @@ class _addPostScreenState extends State<addPostScreen> {
               style: TextStyle(color: Colors.black)),
           children: [
             SimpleDialogOption(
-              padding: EdgeInsets.all(20),
-              child: Text(
+              padding: const EdgeInsets.all(20),
+              child: const Text(
                 "Take a Photo",
                 style: TextStyle(color: Colors.black),
               ),
@@ -52,8 +52,8 @@ class _addPostScreenState extends State<addPostScreen> {
               },
             ),
             SimpleDialogOption(
-              padding: EdgeInsets.all(20),
-              child: Text("Choose from gallery",
+              padding: const EdgeInsets.all(20),
+              child: const Text("Choose from gallery",
                   style: TextStyle(color: Colors.black)),
               onPressed: () async {
                 Navigator.of(context).pop();
@@ -64,7 +64,7 @@ class _addPostScreenState extends State<addPostScreen> {
               },
             ),
             SimpleDialogOption(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child:
                   const Text("Cancel", style: TextStyle(color: Colors.black)),
               onPressed: () async {
@@ -160,7 +160,7 @@ class _addPostScreenState extends State<addPostScreen> {
     },
     {'': ''},
   ];
-  GlobalKey<FlutterMentionsState> _key = GlobalKey<FlutterMentionsState>();
+  final GlobalKey<FlutterMentionsState> _key = GlobalKey<FlutterMentionsState>();
 
   @override
   Widget build(BuildContext context) {
@@ -169,15 +169,15 @@ class _addPostScreenState extends State<addPostScreen> {
         ? Center(
             child: IconButton(
               onPressed: () => _selectImage(context),
-              icon: Icon(Icons.upload),
+              icon: const Icon(Icons.upload),
             ),
           )
         : Scaffold(
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
-              title: Text("Post to"),
+              title: const Text("Post to"),
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,
               ),
               actions: [
@@ -188,7 +188,7 @@ class _addPostScreenState extends State<addPostScreen> {
                       });
                       postImage(user.uid, user.username, user.photoUrl);
                     },
-                    child: Text(
+                    child: const Text(
                       "Post",
                       style: TextStyle(
                           color: Colors.blueAccent,
@@ -201,7 +201,7 @@ class _addPostScreenState extends State<addPostScreen> {
               children: [
                 _isloading
                     ? const LinearProgressIndicator()
-                    : Padding(padding: EdgeInsets.only(top: 0)),
+                    : const Padding(padding: EdgeInsets.only(top: 0)),
                 const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -210,22 +210,17 @@ class _addPostScreenState extends State<addPostScreen> {
                     CircleAvatar(
                       backgroundImage: AssetImage(user.photoUrl),
                     ),
-                    // SizedBox(
-                    // width: MediaQuery
-                    //     .of(context)
-                    //     .size
-                    //     .width * 0.45,
                     description == ""
                         ? Container()
                         : Text(
                             description,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                             ),
                           ),
                     FlutterMentions(
                       key: _key,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter caption",
                       ),
                       maxLines: 8,
@@ -233,23 +228,15 @@ class _addPostScreenState extends State<addPostScreen> {
                         Mention(
                             trigger: '#',
                             data: data,
-                            style: TextStyle(color: Colors.blue),
+                            style: const TextStyle(color: Colors.blue),
                             suggestionBuilder: (data) {
                               return Container(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10),
                                 color: Colors.grey,
                               );
                             }),
                       ],
-                      // ),
-                      // child: TextField(
-                      //   controller: _textEditingController,
-                      //   decoration: InputDecoration(
-                      //       hintText: "Enter Caption....",
-                      //       border: InputBorder.none),
-                      //   maxLines: 8,
-                      // ),
                     ),
                     SizedBox(
                       height: 45,

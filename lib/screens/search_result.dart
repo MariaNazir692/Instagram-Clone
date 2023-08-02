@@ -4,7 +4,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:instagram_clone/screens/postDetail.dart';
 import 'package:instagram_clone/screens/profile_screen.dart';
-import 'package:instagram_clone/widgets/post_card.dart';
 import '../uttils/colors.dart';
 import '../uttils/global_variables.dart';
 
@@ -32,7 +31,7 @@ class _SearchResult_For_postState extends State<SearchResult_For_post> {
             backgroundColor: mobileBackgroundColor,
             title: TextFormField(
               controller: _searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Search",
               ),
               onFieldSubmitted: (String _) {
@@ -42,7 +41,7 @@ class _SearchResult_For_postState extends State<SearchResult_For_post> {
                 });
               },
             ),
-            bottom: TabBar(
+            bottom: const TabBar(
               dividerColor: primaryColor,
               physics: ScrollPhysics(),
               tabs: [
@@ -72,8 +71,8 @@ class _SearchResult_For_postState extends State<SearchResult_For_post> {
                           AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                               snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(
-                              child: const CircularProgressIndicator());
+                          return const Center(
+                              child: CircularProgressIndicator());
                         }
                         else if (snapshot.data!.docs.isEmpty) {
                           Fluttertoast.showToast(
@@ -114,9 +113,7 @@ class _SearchResult_For_postState extends State<SearchResult_For_post> {
                           crossAxisSpacing: 8,
                         );}
                       })
-                  : Container(
-                      child: Center(child: Text("Not Found")),
-                    ),
+                  : const Center(child: Text("Not Found")),
               isShowUser
                   ? FutureBuilder(
                       future: FirebaseFirestore.instance
@@ -128,8 +125,8 @@ class _SearchResult_For_postState extends State<SearchResult_For_post> {
                           AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                               snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(
-                              child: const CircularProgressIndicator());
+                          return const Center(
+                              child: CircularProgressIndicator());
                         }
                         return ListView.builder(
                             itemCount: snapshot.data!.docs.length,
@@ -155,9 +152,7 @@ class _SearchResult_For_postState extends State<SearchResult_For_post> {
                             });
                       },
                     )
-                  : Container(
-                      child: Center(child: Text("Not Found")),
-                    ),
+                  : const Center(child: Text("Not Found")),
             ],
           )),
     );

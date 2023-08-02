@@ -1,13 +1,10 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/resources/FireStoreMathods.dart';
 import 'package:instagram_clone/uttils/colors.dart';
-
 import '../responsive/mobileScreen_layout.dart';
 import '../responsive/responsive_layout_screen.dart';
 import '../responsive/webScreen_layout.dart';
@@ -77,7 +74,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     if (res != 'Success') {
       Fluttertoast.showToast(
-          msg: "Sucess",
+          msg: "Success",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -105,7 +102,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
         backgroundColor: mobileBackgroundColor,
       ),
       body: SingleChildScrollView(
@@ -118,10 +115,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   horizontal: MediaQuery
                       .of(context)
                       .size
-                      .width / 3): EdgeInsets.all(20),
+                      .width / 3): const EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Stack(
@@ -138,11 +135,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         left: 80,
                         child: IconButton(
                           onPressed: selectImage,
-                          icon: Icon(Icons.add_a_photo),
+                          icon: const Icon(Icons.add_a_photo),
                         ))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -150,7 +147,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   hintText: userData['username'],
                   textInputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -158,7 +155,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   hintText: userData['email'],
                   textInputType: TextInputType.emailAddress,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFeildInput(
@@ -166,11 +163,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   hintText: userData['bio'],
                   textInputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
                   onPressed: editProfile,
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: primaryColor,
+                    fixedSize: const Size(200, 50),
+                    shape: const StadiumBorder(),
+                  ),
                   child: _isloading
                       ? const Center(
                     child: CircularProgressIndicator(
@@ -179,13 +181,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   )
                       : Text(
                     "Update Profile".toUpperCase(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: primaryColor,
-                    fixedSize: Size(200, 50),
-                    shape: StadiumBorder(),
                   ),
                 ),
               ],

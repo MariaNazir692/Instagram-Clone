@@ -12,7 +12,7 @@ class PostDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
-        title: Text('Post Details'),
+        title: const Text('Post Details'),
       ),
       body: SafeArea(
         child: StreamBuilder<DocumentSnapshot>(
@@ -29,7 +29,7 @@ class PostDetailScreen extends StatelessWidget {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -50,7 +50,7 @@ class PostDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     posts['description'],
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ),
                 Padding(
@@ -60,10 +60,10 @@ class PostDetailScreen extends StatelessWidget {
                       CircleAvatar(
                         backgroundImage: NetworkImage(posts['profImage']),
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Text(
                         posts['username'],
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),

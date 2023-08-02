@@ -32,13 +32,13 @@ class _CommentScreenState extends State<CommentScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
-        title: Text("Comments"),
+        title: const Text("Comments"),
         centerTitle: false,
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
           height: kToolbarHeight,
-          padding: EdgeInsets.only(left: 16, right: 8),
+          padding: const EdgeInsets.only(left: 16, right: 8),
           margin:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Row(
@@ -72,8 +72,8 @@ class _CommentScreenState extends State<CommentScreen> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  child: Text(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  child: const Text(
                     "Post",
                     style: TextStyle(color: Colors.blue),
                   ),
@@ -92,7 +92,7 @@ class _CommentScreenState extends State<CommentScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return ListView.builder(
               itemCount: (snapshot.data! as dynamic).docs.length,

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,17 +19,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
-        title: Text("Forgot Password"),
+        title: const Text("Forgot Password"),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
               controller: _editingController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Enter Registered Email",
                 hintStyle: TextStyle(color: Colors.black45),
                 fillColor: Colors.white,
@@ -39,23 +37,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 contentPadding: EdgeInsets.all(8),
               ),
               keyboardType: TextInputType.emailAddress,
-              style: TextStyle(color: Colors.black),
-              autofillHints: [AutofillHints.email],
+              style: const TextStyle(color: Colors.black),
+              autofillHints: const [AutofillHints.email],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             ElevatedButton(
               onPressed: UpdatePassword,
-              child: Text(
+              style: ElevatedButton.styleFrom(
+                shape: const StadiumBorder(),
+                foregroundColor: primaryColor,
+                fixedSize: const Size(200, 50),
+              ),
+              child: const Text(
                 "Send Email Link",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(),
-                foregroundColor: primaryColor,
-                fixedSize: Size(200, 50),
               ),
             ),
           ],

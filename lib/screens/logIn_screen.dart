@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/screens/SignUp.dart';
@@ -64,21 +63,21 @@ class _LogIn_ScreenState extends State<LogIn_Screen> {
           padding: MediaQuery.of(context).size.width > WebScreenSize
               ? EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width / 3)
-              : EdgeInsets.symmetric(horizontal: 32),
+              : const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               SvgPicture.asset(
                 "assets/images/ic_instagram.svg",
                 color: primaryColor,
                 height: 64,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 64,
               ),
               TextFeildInput(
@@ -86,7 +85,7 @@ class _LogIn_ScreenState extends State<LogIn_Screen> {
                 hintText: "Enter Email",
                 textInputType: TextInputType.emailAddress,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               TextFeildInput(
@@ -95,11 +94,16 @@ class _LogIn_ScreenState extends State<LogIn_Screen> {
                 textInputType: TextInputType.text,
                 isPass: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               ElevatedButton(
                 onPressed: loginUser,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: primaryColor,
+                  fixedSize: Size(200, 50),
+                  shape: StadiumBorder(),
+                ),
                 child: _isloading
                     ? const Center(
                         child: CircularProgressIndicator(
@@ -108,25 +112,20 @@ class _LogIn_ScreenState extends State<LogIn_Screen> {
                       )
                     : Text(
                         "Log In".toUpperCase(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: primaryColor,
-                  fixedSize: Size(200, 50),
-                  shape: StadiumBorder(),
-                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const ForgotPassword()));
                     },
-                    child: Text(
+                    child: const Text(
                       "Forget Password",
                       style: TextStyle(
                         color: Colors.blue,
@@ -136,13 +135,13 @@ class _LogIn_ScreenState extends State<LogIn_Screen> {
                     )),
               ),
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Don't have an Account: ",
                     style: TextStyle(color: Colors.white54, fontSize: 15),
                   ),
@@ -150,10 +149,10 @@ class _LogIn_ScreenState extends State<LogIn_Screen> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return SignUpScreen();
+                          return const SignUpScreen();
                         }));
                       },
-                      child: Text(
+                      child: const Text(
                         "SignUp",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
